@@ -23,20 +23,18 @@
 #' set.seed(2)
 #' toy <- data.frame(
 #'   math_score = rnorm(80, mean = 50, sd = 10),
-#'   school_id  = rep(letters[1:8], each = 10)
+#'   school_id = rep(letters[1:8], each = 10)
 #' )
 #' hlm_decompose(toy, var = "math_score", cluster = "school_id")
 #'
 #' # 3-level longitudinal example (waves within students within schools)
-#' \donttest{
 #' toy3 <- data.frame(
 #'   math_score = rnorm(120, 50, 10),
-#'   school_id  = rep(letters[1:4], each = 30),
+#'   school_id = rep(letters[1:4], each = 30),
 #'   student_id = rep(seq_len(24), each = 5)
 #' )
 #' hlm_decompose(toy3, var = "math_score", cluster = "school_id",
 #'               id = "student_id", time = NULL)
-#' }
 #' @export
 hlm_decompose <- function(data, var, cluster, id = NULL, time = NULL) {
   stopifnot(is.data.frame(data))
@@ -117,7 +115,6 @@ print.hlm_decompose <- function(x, ...) {
   print(x$summary, n = nrow(x$summary))
   invisible(x)
 }
-
 #' Plot method for hlm_decompose objects
 #'
 #' Produces a simple bar chart of variance shares across components,
@@ -146,3 +143,4 @@ plot.hlm_decompose <- function(x, ...) {
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 20, hjust = 1))
 }
+
